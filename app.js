@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + "/signup.html");
-
 })
 
 app.post('/', function(req, res) {
@@ -29,7 +28,6 @@ app.post('/', function(req, res) {
             }
         ]
     }
-
     const jsonData = JSON.stringify(data);
     const url = "https://us18.api.mailchimp.com/3.0/lists/33a1be277e";
     const options = {
@@ -40,7 +38,7 @@ app.post('/', function(req, res) {
         if (response.statusCode === 200){
             res.sendFile(__dirname + "/success.html");
         } else {
-            res.send(__dirname + "/failure.html");
+            res.sendFile(__dirname + "/failure.html");
         }
         response.on('data',function(data){
         console.log(JSON.parse(data));
